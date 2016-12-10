@@ -1,4 +1,5 @@
 
+import com.mycompany.verkkokauppa.Ostoskori;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -27,7 +28,13 @@ public class VerkkokauppaTest {
     public void tearDown() {
     }
 
+
     @Test
-    public void hello() {
+    public void ostoskorinHintaJaTuotteetAluksi0() {
+
+        Ostoskori kori = new Ostoskori();
+
+        assertEquals(0, kori.tuotteitaKorissa());
+        assertEquals(0, kori.hinta());
     }
 }

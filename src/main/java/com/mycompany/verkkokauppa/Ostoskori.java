@@ -1,21 +1,31 @@
 package com.mycompany.verkkokauppa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ostoskori {
 
-    public int tuotteitaKorissa() {
-        // kertoo korissa olevien tuotteiden määrän
-        // metodin nimi on hieman huono, kyseessä oikeastaan koriin lisättyjen "asioiden" määrä
-        // eli jos koriin lisätty 2 kpl tuotetta "Koff", tulee metodin palauttaa 2     
+    private List<Ostos> ostokset;
 
-        return -1;
+    public Ostoskori() {
+
+        ostokset = new ArrayList<>();
+    }
+
+    public int tuotteitaKorissa() {
+
+        return ostokset.size();
     }
 
     public int hinta() {
-        // kertoo korissa olevien tuotteiden yhteenlasketun hinnan
 
-        return -1;
+        int yhteensa = 0;
+
+        for (Ostos ostos : ostokset) {
+            yhteensa += ostos.hinta();
+        }
+
+        return yhteensa;
     }
 
     public void lisaaTuote(Tuote lisattava) {
