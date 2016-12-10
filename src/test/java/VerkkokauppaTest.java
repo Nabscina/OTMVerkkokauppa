@@ -102,4 +102,14 @@ public class VerkkokauppaTest {
 
         assertEquals(1, kori.ostokset().size());
     }
+    
+    @Test
+    public void korinTuotteenNimiJaLukumaaraOikein() {
+        
+        Ostoskori kori = new Ostoskori();
+        kori.lisaaTuote(new Tuote("porkkanalaatikko", 3));
+        
+        assertEquals("porkkanalaatikko", kori.ostokset().get(0).tuotteenNimi());
+        assertEquals(1, kori.ostokset().get(0).lukumaara());
+    }
 }
