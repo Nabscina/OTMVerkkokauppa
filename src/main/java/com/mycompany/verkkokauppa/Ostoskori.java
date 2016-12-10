@@ -51,7 +51,11 @@ public class Ostoskori {
         }
 
         if (p != null) {
-            ostokset.remove(p);
+            if (p.lukumaara() == 1) {
+                ostokset.remove(p);
+            } else {
+                p.muutaLukumaaraa(-1);
+            }
         }
     }
 

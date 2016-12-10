@@ -152,4 +152,19 @@ public class VerkkokauppaTest {
         assertEquals(0, kori.hinta());
         assertEquals(0, kori.ostokset().size());
     }
+
+    @Test
+    public void kaksiSamaaTuotettaYksiPoistetaanLukumaaraksiJaa1() {
+
+        Ostoskori kori = new Ostoskori();
+        Tuote punajuuri = new Tuote("punajuuri", 2);
+
+        kori.lisaaTuote(punajuuri);
+        kori.lisaaTuote(punajuuri);
+
+        kori.poista(punajuuri);
+
+        assertEquals(1, kori.tuotteitaKorissa());
+        assertEquals(1, kori.ostokset().get(0).lukumaara());
+    }
 }
