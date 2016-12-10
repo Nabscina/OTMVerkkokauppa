@@ -32,7 +32,7 @@ public class Ostoskori {
 
         for (Ostos ostos : ostokset) {
             if (ostos.tuotteenNimi().equals(lisattava.getNimi())) {
-                ostos.muutaLukumaaraa(ostos.lukumaara() + 1);
+                ostos.muutaLukumaaraa(ostos.lukumaara());
                 return;
             }
         }
@@ -41,7 +41,18 @@ public class Ostoskori {
     }
 
     public void poista(Tuote poistettava) {
-        // poistaa tuotteen
+
+        Ostos p = null;
+
+        for (Ostos ostos : ostokset) {
+            if (ostos.tuotteenNimi().equals(poistettava.getNimi())) {
+                p = ostos;
+            }
+        }
+
+        if (p != null) {
+            ostokset.remove(p);
+        }
     }
 
     public List<Ostos> ostokset() {

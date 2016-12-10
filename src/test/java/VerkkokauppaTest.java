@@ -110,4 +110,46 @@ public class VerkkokauppaTest {
 
         assertEquals(2, kori.ostokset().size());
     }
+
+    @Test
+    public void kahdenSamanTuotteenJalkeenSisaltaaYhdenOstoksen() {
+
+        Ostoskori kori = new Ostoskori();
+        kori.lisaaTuote(new Tuote("kinkku", 10));
+        kori.lisaaTuote(new Tuote("kinkku", 10));
+
+        assertEquals(1, kori.ostokset().size());
+    }
+
+    @Test
+    public void kahdellaSamallaTuotteellaSamaNimiJaLukumaara2() {
+
+        Ostoskori kori = new Ostoskori();
+        Tuote kynttila = new Tuote("kynttilä", 2);
+
+        kori.lisaaTuote(kynttila);
+        kori.lisaaTuote(kynttila);
+
+        assertEquals("kynttilä", kori.ostokset().get(0).tuotteenNimi());
+        assertEquals(2, kori.ostokset().get(0).lukumaara());
+    }
+
+    @Test
+    public void tuotteenPoistaminenOnnistuu() {
+
+        Ostoskori kori = new Ostoskori();
+        Tuote piparkakku = new Tuote("piparkakku", 1);
+
+        kori.lisaaTuote(piparkakku);
+
+        assertEquals(1, kori.tuotteitaKorissa());
+        assertEquals(1, kori.hinta());
+        assertEquals(1, kori.ostokset().size());
+
+        kori.poista(piparkakku);
+
+        assertEquals(0, kori.tuotteitaKorissa());
+        assertEquals(0, kori.hinta());
+        assertEquals(0, kori.ostokset().size());
+    }
 }
