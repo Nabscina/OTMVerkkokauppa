@@ -46,7 +46,7 @@ public class VerkkokauppaTest {
 
         kori.lisaaTuote(lasienkeli);
 
-        assertEquals(1, kori.ostokset().size());
+        assertEquals(1, kori.tuotteitaKorissa());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class VerkkokauppaTest {
         kori.lisaaTuote(new Tuote("joulukuusi", 25));
         kori.lisaaTuote(new Tuote("joulusukka", 2));
 
-        assertEquals(2, kori.ostokset().size());
+        assertEquals(2, kori.tuotteitaKorissa());
     }
 
     @Test
@@ -91,6 +91,15 @@ public class VerkkokauppaTest {
         kori.lisaaTuote(tonttu);
         kori.lisaaTuote(tonttu);
 
-        assertEquals(2, kori.ostokset().size());
+        assertEquals(2, kori.tuotteitaKorissa());
+    }
+
+    @Test
+    public void yhdenTuotteenLisaamisenJalkeenKoriSisaltaaYhdenOstoksen() {
+
+        Ostoskori kori = new Ostoskori();
+        kori.lisaaTuote(new Tuote("lanttulaatikko", 3));
+
+        assertEquals(1, kori.ostokset().size());
     }
 }
