@@ -167,4 +167,19 @@ public class VerkkokauppaTest {
         assertEquals(1, kori.tuotteitaKorissa());
         assertEquals(1, kori.ostokset().get(0).lukumaara());
     }
+
+    @Test
+    public void korinTyhjennysToimii() {
+
+        Ostoskori kori = new Ostoskori();
+        kori.lisaaTuote(new Tuote("peruna", 1));
+        kori.lisaaTuote(new Tuote("glögi", 1));
+        kori.lisaaTuote(new Tuote("juusto", 2));
+        kori.lisaaTuote(new Tuote("joulutorttu", 100));
+
+        kori.tyhjenna();
+
+        assertTrue(kori.ostokset().isEmpty());
+        assertEquals(0, kori.ostokset().size());
+    }
 }
