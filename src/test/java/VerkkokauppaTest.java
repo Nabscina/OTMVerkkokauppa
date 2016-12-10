@@ -52,11 +52,22 @@ public class VerkkokauppaTest {
     @Test
     public void yhdenTuotteenLisaamisenJalkeenHintaTuotteenHinta() {
 
-        Tuote olkipukki = new Tuote("lasienkeli", 6);
+        Tuote olkipukki = new Tuote("olkipukki", 6);
         Ostoskori kori = new Ostoskori();
 
         kori.lisaaTuote(olkipukki);
 
         assertEquals(6, kori.hinta());
+    }
+
+    @Test
+    public void kahdenTuotteenLisaamisenJalkeen2Tuotetta() {
+
+        Ostoskori kori = new Ostoskori();
+
+        kori.lisaaTuote(new Tuote("joulukuusi", 25));
+        kori.lisaaTuote(new Tuote("joulusukka", 2));
+
+        assertEquals(2, kori.ostokset().size());
     }
 }
