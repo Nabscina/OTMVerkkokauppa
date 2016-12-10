@@ -81,4 +81,16 @@ public class VerkkokauppaTest {
 
         assertEquals(9, kori.hinta());
     }
+
+    @Test
+    public void kahdenSamanTuotteenLisaamisenJalkeen2Tuotetta() {
+
+        Ostoskori kori = new Ostoskori();
+        Tuote tonttu = new Tuote("tonttu", 5);
+
+        kori.lisaaTuote(tonttu);
+        kori.lisaaTuote(tonttu);
+
+        assertEquals(2, kori.ostokset().size());
+    }
 }
