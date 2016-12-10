@@ -30,6 +30,13 @@ public class Ostoskori {
 
     public void lisaaTuote(Tuote lisattava) {
 
+        for (Ostos ostos : ostokset) {
+            if (ostos.tuotteenNimi().equals(lisattava.getNimi())) {
+                ostos.muutaLukumaaraa(ostos.lukumaara() + 1);
+                return;
+            }
+        }
+
         ostokset.add(new Ostos(lisattava));
     }
 

@@ -83,18 +83,6 @@ public class VerkkokauppaTest {
     }
 
     @Test
-    public void kahdenSamanTuotteenLisaamisenJalkeen2Tuotetta() {
-
-        Ostoskori kori = new Ostoskori();
-        Tuote tonttu = new Tuote("tonttu", 5);
-
-        kori.lisaaTuote(tonttu);
-        kori.lisaaTuote(tonttu);
-
-        assertEquals(2, kori.tuotteitaKorissa());
-    }
-
-    @Test
     public void yhdenTuotteenLisaamisenJalkeenKoriSisaltaaYhdenOstoksen() {
 
         Ostoskori kori = new Ostoskori();
@@ -102,14 +90,24 @@ public class VerkkokauppaTest {
 
         assertEquals(1, kori.ostokset().size());
     }
-    
+
     @Test
     public void korinTuotteenNimiJaLukumaaraOikein() {
-        
+
         Ostoskori kori = new Ostoskori();
         kori.lisaaTuote(new Tuote("porkkanalaatikko", 3));
-        
+
         assertEquals("porkkanalaatikko", kori.ostokset().get(0).tuotteenNimi());
         assertEquals(1, kori.ostokset().get(0).lukumaara());
+    }
+
+    @Test
+    public void kahdenEriTuotteenLisaamisenJalkeenKoriSisaltaaKaksiOstosta() {
+
+        Ostoskori kori = new Ostoskori();
+        kori.lisaaTuote(new Tuote("lanttulaatikko", 3));
+        kori.lisaaTuote(new Tuote("perunalaatikko", 3));
+
+        assertEquals(2, kori.ostokset().size());
     }
 }
