@@ -29,7 +29,8 @@ public class Ostoskori {
     }
 
     public void lisaaTuote(Tuote lisattava) {
-        // lisää tuotteen
+
+        ostokset.add(new Ostos(lisattava));
     }
 
     public void poista(Tuote poistettava) {
@@ -37,9 +38,8 @@ public class Ostoskori {
     }
 
     public List<Ostos> ostokset() {
-        // palauttaa listan jossa on korissa olevat ostokset
 
-        return null;
+        return ostokset;
     }
 
     public void tyhjenna() {
